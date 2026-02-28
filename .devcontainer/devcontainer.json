@@ -1,6 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainers.schema.json",
   "name": "Journal API",
   "dockerComposeFile": [
     "./docker-compose.yml"
