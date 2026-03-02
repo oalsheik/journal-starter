@@ -1,5 +1,7 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from prometheus_fastapi_instrumentator import Instrumentator
 import logging
 
 from api.routers.journal_router import router as journal_router
@@ -16,5 +18,13 @@ logger = logging.getLogger(__name__)
 app = FastAPI(title="Journal API",
               description="A simple journal API for tracking daily work, struggles, and intentions")
 app.include_router(journal_router)
+
+Instrumentator().instrument(app).expose(app)
+
+
+@app.get("/health")
+async def health_check():
+    return JSONResponse(content={"status": "healthy"})
+
 
 logger.info("Journal API application started")

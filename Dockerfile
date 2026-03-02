@@ -1,12 +1,14 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY pyproject.toml .
-RUN pip install --upgrade pip \
-    && pip install .
+COPY pyproject.toml uv.lock ./
+RUN pip install uv \
+    && uv pip install --system .
 
 COPY . .
+
+ENV PYTHONPATH=/app
 
 EXPOSE 8000
 
