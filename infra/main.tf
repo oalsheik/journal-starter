@@ -31,7 +31,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     project = "journal-api"
   }
 }
-
+# ACR IS CREATED EXTERNALLY, SO WE USE A DATA SOURCE TO REFERENCE IT
 # ─── IAM: Allow AKS to pull from ACR ────────────────────────────────────────
 resource "azurerm_role_assignment" "aks_acr_pull" {
   principal_id                     = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
