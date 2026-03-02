@@ -112,5 +112,5 @@ jobs:
 
       - name: Apply manifests
         run: |
-          kubectl apply -f k8s/ 
+          kubectl apply -R -f k8s/
           

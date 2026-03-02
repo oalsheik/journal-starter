@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: journal-api-monitor
+  namespace: monitoring       # Prometheus is in 'monitoring'
+  labels:
+    release: monitoring       # required for Prometheus serviceMonitorSelector
+spec:
+  selector:
+    matchLabels:
+      app: journal-api       # must match the label on your API Service
+  namespaceSelector:
+    matchNames:
+      - default              # your API is in 'default' namespace
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
