@@ -44,7 +44,7 @@ jobs:
             psql "$DATABASE_URL" -f database_setup.sql
           fi
       - name: Run tests
-        run: pytest
+        run: uv run pytest
 
   build-and-push:
     runs-on: ubuntu-latest
